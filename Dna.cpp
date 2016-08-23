@@ -16,10 +16,10 @@ public:
         }
         
         char getNewChar(){
-            char r = (char)rand()%(122-63+1)+63;
-            if(r == 63) r=' ';
-            if(r == 64) r='.';
-            return r;
+            int r = rand()%(122-63+1)+63;
+            if(r == 63) r=32;
+            if(r == 64) r=46;
+            return (char)r;
         }
         void calFitness(Dna& target){
             float score=0;
@@ -44,10 +44,11 @@ public:
         }
         void mutate(float mutationRate){
             for(int i=0; i<gens.length(); i++){
-                float r = floor(rand()%100+1);
-                if(mutationRate>r)
+                float r = floor(rand()%100+1)/100;
+                if(mutationRate>r){
                     gens[i] = getNewChar();
+                }
             }
-            //cout << "gens: " << gens << endl;
+            cout << "gens: " << gens << endl;
         }
 };
