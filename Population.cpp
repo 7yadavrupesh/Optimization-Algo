@@ -10,10 +10,14 @@ private:
     int generation;
     bool finished;
     Dna target;
-    float mutatoinRate;
+    float mutationRate;
     float perfectScore = 1;
 public:
-    Population(Dna target,float mutationRate):target{target},mutatoinRate{mutatoinRate},finished{false}{}
+    Population(Dna target):target{target},finished{false}{
+        
+    }
+    
+    void setMutationRate(float mr){mutationRate=mr;}
     
     void initializePopulation(int popMax){
         int len = target.gens.length();
@@ -61,6 +65,7 @@ public:
             float n = floor(elem.fitness/max);
             for(int i=0; i<n*100; i++){
                 matingPool.push_back(elem);
+                
             }
         }
     }
@@ -71,7 +76,7 @@ public:
             Dna partnerA = matingPool[a];
             Dna partnerB = matingPool[b];
             Dna child = partnerA.crossover(partnerB);
-            child.mutate(mutatoinRate);
+            child.mutate(this->mutationRate);
             population[i] = child;
         }
     }
