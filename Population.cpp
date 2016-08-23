@@ -10,10 +10,10 @@ private:
     int generation;
     bool finished;
     Dna target;
-    int mutatoinRate;
+    float mutatoinRate;
     float perfectScore = 1;
 public:
-    Population(Dna target,int mutationRate):target{target},mutatoinRate{mutatoinRate},finished{false}{}
+    Population(Dna target,float mutationRate):target{target},mutatoinRate{mutatoinRate},finished{false}{}
     
     void initializePopulation(int popMax){
         int len = target.gens.length();
@@ -40,17 +40,18 @@ public:
     }
     
     float getMaxScore(){
-        int maxScore =0.0;
+        float maxScore =0.0;
         for(auto& elem: population){
             //cout << "elem.fitness " << elem.fitness << endl;
             if(maxScore < elem.fitness)
                 maxScore = elem.fitness;
         }
+        cout << maxScore << endl;
         return maxScore;
     }
     
     void buildMatPool(){
-        int max = getMaxScore();
+        float max = getMaxScore();
         if(max<=0){
             cout << "max calculation is zero";
             max = 1;
