@@ -27,7 +27,7 @@ public:
                 if(gens[i] == target.gens[i])
                     score++;
             }
-            fitness = score;
+            fitness = score/target.gens.length();
            // cout << fitness << endl;
         }
         Dna crossover(Dna& partner){
@@ -42,10 +42,9 @@ public:
             //cout << "created Child " << child.gens << endl;
             return child;
         }
-        void mutate(int mutationRate){
+        void mutate(float mutationRate){
             for(int i=0; i<gens.length(); i++){
-                int r = floor(rand()%100+1);
-                cout << "r" << r << "mutationRate" << mutationRate << endl;
+                float r = floor(rand()%100+1);
                 if(mutationRate>r)
                     gens[i] = getNewChar();
             }
