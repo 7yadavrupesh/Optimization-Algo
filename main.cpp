@@ -4,9 +4,9 @@ using namespace std;
 
 int main()
 {
-    Population pop(Dna("This is rupesh yadav"),10);
+    Population pop(Dna("This is rupesh yadav"),.5);
     pop.initializePopulation(10000);
-    pop.printPopulation();
+    //pop.printPopulation();
     for(int i=0; i<10; i++){
         pop.calFitness();
         if(pop.isFinished() == true)
